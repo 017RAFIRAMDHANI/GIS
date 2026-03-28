@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import Swal from "sweetalert2";
 import { usePathname } from "next/navigation";
-
 
 export default function Header() {
   const pathname = usePathname();
@@ -48,10 +48,19 @@ export default function Header() {
               Tambah Data
             </Link> */}
             <button
-              onClick={() => {
-                const confirmed = window.confirm("Yakin ingin logout?");
-                if (confirmed) {
-                  signOut({
+              onClick={async () => {
+                const result = await Swal.fire({
+                  title: "Yakin ingin logout?",
+                  text: "Sesi Anda akan diakhiri.",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonText: "Ya, logout",
+                  cancelButtonText: "Batal",
+                  reverseButtons: true,
+                });
+
+                if (result.isConfirmed) {
+                  await signOut({
                     callbackUrl: "/login",
                   });
                 }

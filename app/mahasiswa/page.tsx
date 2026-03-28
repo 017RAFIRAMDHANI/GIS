@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { getMahasiswa } from "../lib/api";
+import AppShell from '../components/AppShell';
+
 type Mahasiswa = {
   npm: string;
   name: string;
@@ -29,7 +31,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+     <AppShell>
       <h2>Data Mahasiswa</h2>
 
       <table style={{ border: "1px solid black" }}>
@@ -64,6 +66,6 @@ export default function Page() {
       <br />
 
       <MapGoogle  selected={selected} />
-    </div>
+      </AppShell>
   );
 }
