@@ -37,13 +37,12 @@ export default function MapArea() {
 
             map.fitBounds(jabarBounds);
             mapInstanceRef.current = map;
-            
-            // titik merah
-            // new window.google.maps.Marker({
-            //     position: { lat: -6.9175, lng: 107.6191 },
-            //     map,
-            //     title: "Bandung, Jawa Barat",
-            // });
+
+            new window.google.maps.Marker({
+                position: { lat: -6.9175, lng: 107.6191 },
+                map,
+                title: "Bandung, Jawa Barat",
+            });
         };
 
         const loadGoogleMaps = () => {
