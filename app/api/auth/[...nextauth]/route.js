@@ -11,7 +11,6 @@ const handler = NextAuth({
         username: {},
         password: {},
       },
-
       async authorize(credentials) {
         const { username, password } = credentials;
 
@@ -40,8 +39,8 @@ const handler = NextAuth({
     }),
   ],
 
-  // 🔥 penting biar data user bisa dipakai di frontend
   callbacks: {
+    // JWT callback: menambahkan data user ke token
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -50,6 +49,7 @@ const handler = NextAuth({
       return token;
     },
 
+    // Session callback: menambahkan data token ke session
     async session({ session, token }) {
       session.user.id = token.id;
       session.user.username = token.username;
@@ -57,10 +57,19 @@ const handler = NextAuth({
     },
   },
 
+  // Konfigurasi session
   session: {
-    strategy: "jwt",
+    strategy: "jwt",        // pakai JWT
+    maxAge: 60 * 60,        // 1 jam = 3600 detik
+    updateAge: 0,           // jangan perpanjang otomatis
   },
 
+  // Konfigurasi JWT
+  jwt: {
+    maxAge: 60 * 60,        // 1 jam
+  },
+
+  // Halaman login custom
   pages: {
     signIn: "/login",
   },

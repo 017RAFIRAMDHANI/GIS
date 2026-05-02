@@ -859,10 +859,8 @@ body {
 
 .sb-toggle svg {
   width: 17px;
-  height: 17px;
-  stroke: var(--text-mid);
-  fill: none;
-  stroke-width: 2;
+  height: 17px; 
+  fill: none; 
 }
 
 .sb-toggle:hover svg {

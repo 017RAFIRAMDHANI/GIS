@@ -3,7 +3,9 @@ import AppShell from '../components/AppShell';
 
 function page() {
   return (
-    <>page</>
+    <>
+    
+    </>
   )
 }
 
