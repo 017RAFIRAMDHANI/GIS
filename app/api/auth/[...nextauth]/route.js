@@ -8,16 +8,16 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        username: {},
+        nama_lengkap: {},
         password: {},
       },
       async authorize(credentials) {
-        const { username, password } = credentials;
+        const { nama_lengkap, password } = credentials;
 
         // ambil user dari DB
         const result = await pool.query(
-          "SELECT * FROM users WHERE username = $1",
-          [username]
+          "SELECT * FROM users WHERE nama_lengkap = $1",
+          [nama_lengkap]
         );
 
         const user = result.rows[0];
@@ -33,7 +33,7 @@ const handler = NextAuth({
         return {
           id: user.id,
           name: user.name,
-          username: user.username,
+          nama_lengkap: user.nama_lengkap,
         };
       },
     }),
@@ -44,7 +44,7 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.username = user.username;
+        token.nama_lengkap = user.nama_lengkap;
       }
       return token;
     },
@@ -52,7 +52,7 @@ const handler = NextAuth({
     // Session callback: menambahkan data token ke session
     async session({ session, token }) {
       session.user.id = token.id;
-      session.user.username = token.username;
+      session.user.nama_lengkap = token.nama_lengkap;
       return session;
     },
   },

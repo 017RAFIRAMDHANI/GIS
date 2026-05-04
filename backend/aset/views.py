@@ -13,12 +13,12 @@ from .serializers import (
 class ReklameKategoriViewSet(viewsets.ModelViewSet):
     queryset = ReklameKategori.objects.all()
     serializer_class = ReklameKategoriSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 class ZonaTataRuangViewSet(viewsets.ModelViewSet):
     queryset = ZonaTataRuang.objects.all()
     serializer_class = ZonaTataRuangSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
@@ -28,19 +28,19 @@ class UsersViewSet(viewsets.ModelViewSet):
 class ReklameViewSet(viewsets.ModelViewSet):
     queryset = Reklame.objects.all()
     serializer_class = ReklameSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 class PerizinanViewSet(viewsets.ModelViewSet):
     queryset = Perizinan.objects.all()
     serializer_class = PerizinanSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 class DokumenReklameViewSet(viewsets.ModelViewSet):
     queryset = DokumenReklame.objects.all()
     serializer_class = DokumenReklameSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 class FotoReklameViewSet(viewsets.ModelViewSet):
     queryset = FotoReklame.objects.all()
     serializer_class = FotoReklameSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]

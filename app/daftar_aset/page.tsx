@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import AppShell from "../components/AppShell";
 
 // ================= TYPE (sesuai API Django) =================
 type Aset = {
@@ -183,6 +184,7 @@ export default function Page() {
   };
 
   return (
+ <AppShell>
     <div style={styles.page}>
       <div style={styles.card}>
 
@@ -325,5 +327,6 @@ export default function Page() {
 
       </div>
     </div>
+</AppShell>
   );
 }

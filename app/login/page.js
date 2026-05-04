@@ -8,11 +8,11 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [nama_lengkap, setNamaLengkap] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    if (!username || !password) {
+    if (!nama_lengkap || !password) {
       Swal.fire({
         icon: "warning",
         title: "Form belum lengkap",
@@ -33,7 +33,7 @@ export default function LoginPage() {
     });
 
     const result = await signIn("credentials", {
-      username,
+      nama_lengkap,
       password,
       redirect: false,
       callbackUrl: "/",
@@ -183,16 +183,16 @@ export default function LoginPage() {
             <p className="text-login">Silahkan masukan username dan password</p>
 
             <div className="input-user">
-              <label htmlFor="username" className="label-login">
+              <label htmlFor="nama_lengkap" className="label-login">
                 Username
               </label>
               <input
-                id="username"
+                id="nama_lengkap"
                 type="text"
                 className="input-login"
                 placeholder="Masukan Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={nama_lengkap}
+                onChange={(e) => setNamaLengkap(e.target.value)}
               />
             </div>
 

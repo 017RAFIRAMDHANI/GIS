@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import NavDrawer from '../components/Navdrawer';
 import Sidebar from './Sidebar';
 import SidebarToggle from '../components/Sidebartoggle';
+import { usePathname } from "next/navigation";
 
 interface AppShellProps {
     children: React.ReactNode;
@@ -24,6 +25,10 @@ export default function AppShell({ children, fullBleed }: AppShellProps) {
     const openDrawer = useCallback(() => setDrawerOpen(true), []);
     const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
+    const pathname = usePathname();
+
+    const hideSidebar = pathname === "/daftar_aset";
+
     const toggleSidebar = useCallback(() => {
         const isMobile = window.innerWidth <= 768;
         if (isMobile) {
@@ -39,18 +44,21 @@ export default function AppShell({ children, fullBleed }: AppShellProps) {
         <>
             <Navbar onDrawerOpen={openDrawer} />
             <NavDrawer isOpen={drawerOpen} onClose={closeDrawer} />
-            <SidebarToggle
-                sidebarCollapsed={sidebarCollapsed}
-                mobileSidebarOpen={mobileSidebarOpen}
-                onToggle={toggleSidebar}
-            />
-
-            <div className="layout">
-                <Sidebar
-                    collapsed={sidebarCollapsed}
-                    mobileOpen={mobileSidebarOpen}
-                    onMobileClose={closeMobileSidebar}
+            {!hideSidebar && (
+                <SidebarToggle
+                    sidebarCollapsed={sidebarCollapsed}
+                    mobileSidebarOpen={mobileSidebarOpen}
+                    onToggle={toggleSidebar}
                 />
+            )}
+            <div className="layout">
+                {!hideSidebar && (
+                    <Sidebar
+                        collapsed={sidebarCollapsed}
+                        mobileOpen={mobileSidebarOpen}
+                        onMobileClose={closeMobileSidebar}
+                    />
+                )}
 
                 {/* Area konten halaman */}
                 <div className={fullBleed ? 'page-content--fullbleed' : 'page-content'}>
